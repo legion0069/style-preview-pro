@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Hairstyle } from '@/types/looksee';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Loader2, Sparkles, Star, RefreshCw } from 'lucide-react';
+import { ArrowLeft, Loader2, Sparkles, Star, RefreshCw, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useHairstyleGeneration } from '@/hooks/useHairstyleGeneration';
 
 interface PreviewGeneratorProps {
   hairstyle: Hairstyle;
@@ -17,22 +18,50 @@ const PreviewGenerator = ({
   onBack,
   onTryAnother,
 }: PreviewGeneratorProps) => {
-  const [isGenerating, setIsGenerating] = useState(true);
-  const [generatedImage, setGeneratedImage] = useState<string | null>(null);
-  const [rating] = useState(4.5);
+  const { isGenerating, result, error, generateHairstyle, reset } = useHairstyleGeneration();
 
   useEffect(() => {
-    // Simulate AI generation
-    const timer = setTimeout(() => {
-      setIsGenerating(false);
-      // Use the front photo as a placeholder for the "generated" image
-      setGeneratedImage(frontPhoto);
-    }, 3000);
+    // Trigger AI generation when component mounts
+    generateHairstyle(frontPhoto, hairstyle);
+    
+    return () => {
+      reset();
+    };
+  }, [frontPhoto, hairstyle, generateHairstyle, reset]);
 
-    return () => clearTimeout(timer);
-  }, [frontPhoto]);
+  // Handle error state
+  if (error && !isGenerating) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="card-elevated p-8 max-w-lg w-full text-center space-y-6">
+          <div className="mx-auto w-16 h-16 rounded-full bg-destructive/20 flex items-center justify-center">
+            <AlertCircle className="w-8 h-8 text-destructive" />
+          </div>
 
-  if (isGenerating) {
+          <div>
+            <h2 className="font-serif text-2xl font-bold mb-2">
+              Generation Failed
+            </h2>
+            <p className="text-muted-foreground">{error}</p>
+          </div>
+
+          <div className="flex gap-3 justify-center">
+            <Button variant="outline" onClick={onBack}>
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Styles
+            </Button>
+            <Button variant="gold" onClick={() => generateHairstyle(frontPhoto, hairstyle)}>
+              <RefreshCw className="w-4 h-4 mr-2" />
+              Try Again
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle loading state
+  if (isGenerating || !result) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="card-elevated p-8 max-w-lg w-full text-center space-y-6">
@@ -62,6 +91,8 @@ const PreviewGenerator = ({
       </div>
     );
   }
+
+  const { generatedImage, aiExplanation, suitabilityScore } = result;
 
   return (
     <div className="space-y-6">
@@ -105,16 +136,16 @@ const PreviewGenerator = ({
                       key={star}
                       className={cn(
                         'w-5 h-5',
-                        star <= Math.floor(rating)
+                        star <= Math.floor(suitabilityScore)
                           ? 'fill-primary text-primary'
-                          : star === Math.ceil(rating)
+                          : star === Math.ceil(suitabilityScore)
                           ? 'fill-primary/50 text-primary'
                           : 'text-muted-foreground'
                       )}
                     />
                   ))}
                 </div>
-                <span className="font-bold text-lg">{rating}/5</span>
+                <span className="font-bold text-lg">{suitabilityScore}/5</span>
               </div>
             </div>
           </div>
@@ -126,9 +157,7 @@ const PreviewGenerator = ({
               AI Analysis
             </h4>
             <p className="text-sm text-muted-foreground">
-              This hairstyle complements your face shape and hair texture. The {hairstyle.name.toLowerCase()} 
-              works well with your {'{hair density}'} hair density and {'{hair type}'} hair type, 
-              creating a balanced and stylish look.
+              {aiExplanation}
             </p>
           </div>
 
