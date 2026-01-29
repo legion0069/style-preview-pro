@@ -26,7 +26,7 @@ const Logo = ({ className, size = 'md' }: LogoProps) => {
         <div className="absolute inset-0 blur-lg bg-primary/30" />
       </div>
       <span className={cn('font-serif font-bold text-gradient-gold', sizes[size])}>
-        Looksee<span className="text-foreground/80">AI</span>
+        Looksy<span className="text-foreground/80">AI</span>
       </span>
     </div>
   );

@@ -57,7 +57,7 @@ const Index = () => {
             </h1>
             
             <p className="text-lg text-muted-foreground max-w-lg">
-              Looksee AI bridges the gap between imagination and reality. 
+              Looksy AI bridges the gap between imagination and reality. 
               Show your customers exactly how they'll look with any hairstyle — 
               before a single cut is made.
             </p>
@@ -120,7 +120,7 @@ const Index = () => {
                 </div>
                 <div>
                   <p className="font-semibold">500+ Barbers</p>
-                  <p className="text-sm text-muted-foreground">Trust Looksee</p>
+                  <p className="text-sm text-muted-foreground">Trust Looksy</p>
                 </div>
               </div>
             </div>
@@ -188,7 +188,7 @@ const Index = () => {
           <div className="space-y-6">
             <h2 className="font-serif text-3xl md:text-4xl font-bold">
               Why Barbers Love{' '}
-              <span className="text-gradient-gold">Looksee AI</span>
+              <span className="text-gradient-gold">Looksy AI</span>
             </h2>
             <div className="space-y-4">
               {[
@@ -242,7 +242,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <Logo size="sm" />
             <p className="text-sm text-muted-foreground">
-              © 2025 Looksee AI. All rights reserved.
+              © 2025 Looksy AI. All rights reserved.
             </p>
           </div>
         </div>
