@@ -1,12 +1,36 @@
 import { Hairstyle, HairAnalysis } from '@/types/looksee';
 import { HAIRSTYLES, getEligibleHairstyles } from '@/data/hairstyles';
-import { Check, Lock, TrendingUp, Sparkles } from 'lucide-react';
+import { Check, Lock, TrendingUp, Sparkles, Scissors } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useState, useCallback } from 'react';
 
 interface HairstyleGalleryProps {
   analysis: HairAnalysis;
   onSelect: (hairstyle: Hairstyle) => void;
 }
+
+const HairstyleImage = ({ src, alt }: { src: string; alt: string }) => {
+  const [failed, setFailed] = useState(false);
+  const onError = useCallback(() => setFailed(true), []);
+
+  if (failed) {
+    return (
+      <div className="aspect-[3/4] bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
+        <Scissors className="w-10 h-10 text-muted-foreground" />
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      onError={onError}
+      loading="lazy"
+      className="aspect-[3/4] w-full object-cover"
+    />
+  );
+};
 
 const HairstyleGallery = ({ analysis, onSelect }: HairstyleGalleryProps) => {
   const { eligible, ineligible } = getEligibleHairstyles(
@@ -66,11 +90,7 @@ const HairstyleGallery = ({ analysis, onSelect }: HairstyleGalleryProps) => {
                 'hover:scale-[1.02]'
               )}
             >
-              <div className="aspect-[3/4] bg-gradient-to-br from-secondary to-muted">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-4xl">💇</span>
-                </div>
-              </div>
+              <HairstyleImage src={style.image} alt={style.name} />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               <div className="absolute bottom-0 left-0 right-0 p-4">
                 <div className="flex items-center justify-between">
@@ -110,11 +130,7 @@ const HairstyleGallery = ({ analysis, onSelect }: HairstyleGalleryProps) => {
                 key={style.id}
                 className="relative rounded-xl overflow-hidden opacity-40 grayscale cursor-not-allowed"
               >
-                <div className="aspect-[3/4] bg-gradient-to-br from-secondary to-muted">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-4xl">💇</span>
-                  </div>
-                </div>
+                <HairstyleImage src={style.image} alt={style.name} />
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background to-transparent">
                   <h4 className="font-semibold text-sm">{style.name}</h4>
                   <p className="text-xs text-muted-foreground">Not suitable</p>
