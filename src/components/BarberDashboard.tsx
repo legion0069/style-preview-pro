@@ -133,7 +133,7 @@ const BarberDashboard = ({ onLogout }: BarberDashboardProps) => {
         )}
 
         {step === 'analyzing' && (
-          <AnalysisLoader onComplete={handleAnalysisComplete} />
+          <AnalysisLoader photos={session.photos} onComplete={handleAnalysisComplete} />
         )}
 
         {step === 'gallery' && session.analysis && (
