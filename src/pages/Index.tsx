@@ -3,7 +3,7 @@ import LoginForm from '@/components/LoginForm';
 import BarberDashboard from '@/components/BarberDashboard';
 import Logo from '@/components/Logo';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Scissors, Sparkles, Users, CheckCircle } from 'lucide-react';
+import { ArrowRight, Sparkles, Scissors } from 'lucide-react';
 import heroImage from '@/assets/hero-barber.jpg';
 
 const Index = () => {
@@ -34,7 +34,7 @@ const Index = () => {
         <div className="flex items-center justify-between">
           <Logo size="md" />
           <Button variant="gold" onClick={() => setShowLogin(true)}>
-            Barber Login
+            Try Demo
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
         </div>
@@ -57,36 +57,15 @@ const Index = () => {
             </h1>
             
             <p className="text-lg text-muted-foreground max-w-lg">
-              Looksy AI bridges the gap between imagination and reality. 
-              Show your customers exactly how they'll look with any hairstyle — 
-              before a single cut is made.
+              Looksy AI is a demo prototype that uses artificial intelligence to preview 
+              hairstyles on real photos — helping barbers and customers visualize the 
+              result before a single cut is made.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="xl" onClick={() => setShowLogin(true)}>
-                Start Free Trial
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button variant="outline" size="xl">
-                Watch Demo
-              </Button>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border">
-              <div>
-                <p className="font-serif text-3xl font-bold text-primary">95%</p>
-                <p className="text-sm text-muted-foreground">Customer Satisfaction</p>
-              </div>
-              <div>
-                <p className="font-serif text-3xl font-bold text-primary">50+</p>
-                <p className="text-sm text-muted-foreground">Trending Styles</p>
-              </div>
-              <div>
-                <p className="font-serif text-3xl font-bold text-primary">2min</p>
-                <p className="text-sm text-muted-foreground">Average Preview</p>
-              </div>
-            </div>
+            <Button variant="hero" size="xl" onClick={() => setShowLogin(true)}>
+              Try the Demo
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
           </div>
 
           {/* Right - Image */}
@@ -100,7 +79,7 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
             </div>
             
-            {/* Floating Cards */}
+            {/* Floating Card */}
             <div className="absolute -bottom-6 -left-6 card-elevated p-4 animate-fade-up" style={{ animationDelay: '0.3s' }}>
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
@@ -112,23 +91,11 @@ const Index = () => {
                 </div>
               </div>
             </div>
-            
-            <div className="absolute -top-4 -right-4 card-elevated p-4 animate-fade-up" style={{ animationDelay: '0.5s' }}>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Users className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <p className="font-semibold">500+ Barbers</p>
-                  <p className="text-sm text-muted-foreground">Trust Looksy</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* How It Works Section */}
       <section className="container mx-auto px-4 py-16 md:py-24">
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">
@@ -182,67 +149,13 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="container mx-auto px-4 py-16 md:py-24">
-        <div className="grid lg:grid-cols-2 gap-12">
-          <div className="space-y-6">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold">
-              Why Barbers Love{' '}
-              <span className="text-gradient-gold">Looksy AI</span>
-            </h2>
-            <div className="space-y-4">
-              {[
-                'Eliminate miscommunication with customers',
-                'Increase customer satisfaction by 95%',
-                'Faster decision-making during consultations',
-                'Stand out with professional technology',
-                'Reduce repeat corrections during haircuts',
-              ].map((benefit, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-primary shrink-0" />
-                  <span>{benefit}</span>
-                </div>
-              ))}
-            </div>
-            <Button variant="gold" size="lg" onClick={() => setShowLogin(true)}>
-              Get Started Today
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
-          
-          <div className="card-elevated p-8 space-y-6">
-            <div className="text-center">
-              <p className="font-serif text-5xl font-bold text-gradient-gold mb-2">$29</p>
-              <p className="text-muted-foreground">per month, per barber</p>
-            </div>
-            <div className="space-y-3">
-              {[
-                'Unlimited customer sessions',
-                '50+ trending hairstyles',
-                'AI hair analysis',
-                'Real-time preview generation',
-                'Priority support',
-              ].map((feature, index) => (
-                <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50">
-                  <CheckCircle className="w-4 h-4 text-primary shrink-0" />
-                  <span className="text-sm">{feature}</span>
-                </div>
-              ))}
-            </div>
-            <Button variant="gold" size="lg" className="w-full" onClick={() => setShowLogin(true)}>
-              Start 14-Day Free Trial
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="border-t border-border">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <Logo size="sm" />
             <p className="text-sm text-muted-foreground">
-              © 2025 Looksy AI. All rights reserved.
+              © 2026 Looksy AI. All rights reserved.
             </p>
           </div>
         </div>
