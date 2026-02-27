@@ -16,14 +16,60 @@ const PhotoUploadSlot = ({ type, photo, onUpload, onRemove }: PhotoUploadSlotPro
 
   const requirement = PHOTO_REQUIREMENTS[type];
 
+  const readFileAsDataUrl = (file: File) =>
+    new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = () => reject(new Error('Failed to read image'));
+      reader.readAsDataURL(file);
+    });
+
+  const optimizeImage = async (file: File): Promise<string> => {
+    const objectUrl = URL.createObjectURL(file);
+
+    try {
+      const image = await new Promise<HTMLImageElement>((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = () => reject(new Error('Failed to load image'));
+        img.src = objectUrl;
+      });
+
+      const maxDimension = 1280;
+      const scale = Math.min(1, maxDimension / Math.max(image.width, image.height));
+      const width = Math.max(1, Math.round(image.width * scale));
+      const height = Math.max(1, Math.round(image.height * scale));
+
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+
+      const context = canvas.getContext('2d');
+      if (!context) throw new Error('Image processing is not supported');
+
+      context.drawImage(image, 0, 0, width, height);
+      return canvas.toDataURL('image/jpeg', 0.82);
+    } finally {
+      URL.revokeObjectURL(objectUrl);
+    }
+  };
+
+  const processFile = async (file: File) => {
+    if (!file.type.startsWith('image/')) return;
+
+    try {
+      const optimizedDataUrl = await optimizeImage(file);
+      onUpload(type, optimizedDataUrl);
+    } catch {
+      const fallbackDataUrl = await readFileAsDataUrl(file);
+      onUpload(type, fallbackDataUrl);
+    }
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        onUpload(type, reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      void processFile(file);
     }
   };
 
@@ -40,12 +86,8 @@ const PhotoUploadSlot = ({ type, photo, onUpload, onRemove }: PhotoUploadSlotPro
     e.preventDefault();
     setIsDragging(false);
     const file = e.dataTransfer.files?.[0];
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        onUpload(type, reader.result as string);
-      };
-      reader.readAsDataURL(file);
+    if (file) {
+      void processFile(file);
     }
   };
 
