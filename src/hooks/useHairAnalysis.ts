@@ -25,9 +25,13 @@ export const useHairAnalysis = () => {
 
       return data.analysis as HairAnalysis;
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Failed to analyze hair';
+      const rawMessage = err instanceof Error ? err.message : 'Failed to analyze hair';
+      const message = rawMessage.includes('Failed to send a request to the Edge Function')
+        ? 'Could not reach analysis service. Please use smaller photos and try again.'
+        : rawMessage;
+
       setError(message);
-      console.error('Hair analysis error:', message);
+      console.error('Hair analysis error:', rawMessage);
       return null;
     } finally {
       setIsLoading(false);
