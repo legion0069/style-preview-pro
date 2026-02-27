@@ -34,3 +34,6 @@ enable_confirmations = false
 
 [functions.generate-hairstyle]
 verify_jwt = false
+
+[functions.analyze-hair]
+verify_jwt = false
