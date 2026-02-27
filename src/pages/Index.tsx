@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import LoginForm from '@/components/LoginForm';
+
 import BarberDashboard from '@/components/BarberDashboard';
 import Logo from '@/components/Logo';
 import { Button } from '@/components/ui/button';
@@ -8,23 +8,9 @@ import heroImage from '@/assets/hero-barber.jpg';
 
 const Index = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
 
   if (isLoggedIn) {
     return <BarberDashboard onLogout={() => setIsLoggedIn(false)} />;
-  }
-
-  if (showLogin) {
-    return (
-      <div className="min-h-screen bg-gradient-dark flex flex-col">
-        <header className="container mx-auto px-4 py-6">
-          <Logo size="md" />
-        </header>
-        <main className="flex-1 flex items-center justify-center px-4">
-          <LoginForm onLogin={() => setIsLoggedIn(true)} />
-        </main>
-      </div>
-    );
   }
 
   return (
@@ -33,7 +19,7 @@ const Index = () => {
       <nav className="container mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
           <Logo size="md" />
-          <Button variant="gold" onClick={() => setShowLogin(true)}>
+          <Button variant="gold" onClick={() => setIsLoggedIn(true)}>
             Try Demo
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
@@ -62,7 +48,7 @@ const Index = () => {
               result before a single cut is made.
             </p>
 
-            <Button variant="hero" size="xl" onClick={() => setShowLogin(true)}>
+            <Button variant="hero" size="xl" onClick={() => setIsLoggedIn(true)}>
               Try the Demo
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
