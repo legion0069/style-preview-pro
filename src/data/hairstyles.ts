@@ -1,10 +1,21 @@
 import { Hairstyle } from '@/types/looksee';
 
+import classicFadeImg from '@/assets/hairstyles/Classic_fade.png';
+import modernPompadourImg from '@/assets/hairstyles/modern_pompadour.png';
+import buzzCutImg from '@/assets/hairstyles/buzz_cut.png';
+import curlyTopFadeImg from '@/assets/hairstyles/curly_top_fade.png';
+import disconnectedUndercutImg from '@/assets/hairstyles/disconnected_undercut.png';
+import modernQuiffImg from '@/assets/hairstyles/modern_quff.png';
+import crewCutImg from '@/assets/hairstyles/crew_cut.png';
+import classicSidePartImg from '@/assets/hairstyles/classic_side_part.png';
+import modernMulletImg from '@/assets/hairstyles/modern_mullet.png';
+import frenchCropImg from '@/assets/hairstyles/french_crop.png';
+
 export const HAIRSTYLES: Hairstyle[] = [
   {
     id: 'fade-classic',
     name: 'Classic Fade',
-    image: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&h=533&fit=crop',
+    image: classicFadeImg,
     description: 'Timeless fade with clean lines and gradual transition',
     tags: ['fade', 'classic', 'professional'],
     suitableFor: {
@@ -17,7 +28,7 @@ export const HAIRSTYLES: Hairstyle[] = [
   {
     id: 'pompadour',
     name: 'Modern Pompadour',
-    image: 'https://images.unsplash.com/photo-1520975916090-3105956dac38?w=400&h=533&fit=crop',
+    image: modernPompadourImg,
     description: 'Voluminous top with slicked sides, modern twist on classic style',
     tags: ['volume', 'classic', 'bold'],
     suitableFor: {
@@ -43,7 +54,7 @@ export const HAIRSTYLES: Hairstyle[] = [
   {
     id: 'buzz-cut',
     name: 'Buzz Cut',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=533&fit=crop',
+    image: buzzCutImg,
     description: 'Ultra-short, low maintenance style',
     tags: ['minimal', 'clean', 'easy'],
     suitableFor: {
@@ -69,7 +80,7 @@ export const HAIRSTYLES: Hairstyle[] = [
   {
     id: 'curly-top',
     name: 'Curly Top Fade',
-    image: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=400&h=533&fit=crop',
+    image: curlyTopFadeImg,
     description: 'Natural curls on top with faded sides',
     tags: ['curly', 'natural', 'trendy'],
     suitableFor: {
@@ -82,7 +93,7 @@ export const HAIRSTYLES: Hairstyle[] = [
   {
     id: 'undercut',
     name: 'Disconnected Undercut',
-    image: 'https://images.unsplash.com/photo-1593702288056-f5834cfcb453?w=400&h=533&fit=crop',
+    image: disconnectedUndercutImg,
     description: 'Bold contrast between long top and shaved sides',
     tags: ['bold', 'modern', 'edgy'],
     suitableFor: {
@@ -95,7 +106,7 @@ export const HAIRSTYLES: Hairstyle[] = [
   {
     id: 'quiff',
     name: 'Modern Quiff',
-    image: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=400&h=533&fit=crop',
+    image: modernQuiffImg,
     description: 'Voluminous front with tapered sides',
     tags: ['volume', 'trendy', 'versatile'],
     suitableFor: {
@@ -108,7 +119,7 @@ export const HAIRSTYLES: Hairstyle[] = [
   {
     id: 'crew-cut',
     name: 'Crew Cut',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=533&fit=crop',
+    image: crewCutImg,
     description: 'Short, uniform length with slightly longer top',
     tags: ['classic', 'military', 'clean'],
     suitableFor: {
@@ -121,7 +132,7 @@ export const HAIRSTYLES: Hairstyle[] = [
   {
     id: 'side-part',
     name: 'Classic Side Part',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=533&fit=crop',
+    image: classicSidePartImg,
     description: 'Timeless, professional style with defined part',
     tags: ['classic', 'professional', 'formal'],
     suitableFor: {
@@ -134,7 +145,7 @@ export const HAIRSTYLES: Hairstyle[] = [
   {
     id: 'mullet-modern',
     name: 'Modern Mullet',
-    image: 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6?w=400&h=533&fit=crop',
+    image: modernMulletImg,
     description: 'Trendy take on the classic with textured layers',
     tags: ['trendy', 'bold', 'retro'],
     suitableFor: {
@@ -147,7 +158,7 @@ export const HAIRSTYLES: Hairstyle[] = [
   {
     id: 'french-crop',
     name: 'French Crop',
-    image: 'https://images.unsplash.com/photo-1618886614638-80e3c103d31a?w=400&h=533&fit=crop',
+    image: frenchCropImg,
     description: 'Textured fringe with short back and sides',
     tags: ['european', 'textured', 'modern'],
     suitableFor: {
