@@ -2,7 +2,9 @@ import { Hairstyle } from '@/types/looksee';
 
 import classicFadeImg from '@/assets/hairstyles/Classic_fade.png';
 import modernPompadourImg from '@/assets/hairstyles/modern_pompadour.png';
+import texturedCropImg from '@/assets/hairstyles/textured_crop.png';
 import buzzCutImg from '@/assets/hairstyles/buzz_cut.png';
+import slickBackImg from '@/assets/hairstyles/slick_back.png';
 import curlyTopFadeImg from '@/assets/hairstyles/curly_top_fade.png';
 import disconnectedUndercutImg from '@/assets/hairstyles/disconnected_undercut.png';
 import modernQuiffImg from '@/assets/hairstyles/modern_quff.png';
@@ -41,7 +43,7 @@ export const HAIRSTYLES: Hairstyle[] = [
   {
     id: 'textured-crop',
     name: 'Textured Crop',
-    image: 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&h=533&fit=crop',
+    image: texturedCropImg,
     description: 'Messy, textured top with short sides for a casual look',
     tags: ['textured', 'casual', 'modern'],
     suitableFor: {
@@ -67,7 +69,7 @@ export const HAIRSTYLES: Hairstyle[] = [
   {
     id: 'slick-back',
     name: 'Slick Back',
-    image: 'https://images.unsplash.com/photo-1584367555381-35e6ff20619a?w=400&h=533&fit=crop',
+    image: slickBackImg,
     description: 'Smooth, combed back style with polished finish',
     tags: ['formal', 'sleek', 'professional'],
     suitableFor: {
